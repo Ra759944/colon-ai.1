@@ -34,7 +34,7 @@ export default function CouponBuilder() {
   else setNotice("Coupon enregistré en brouillon dans ton compte.");
   setSaving(false);
  }
- return <section className="coupon-panel" id="outils"><div className="coupon-head"><div><span className="eyebrow">OUTIL DE CALCUL</span><h3><Calculator size={19}/> Constructeur de combiné</h3></div><span className="coupon-tag">Sans pari automatique</span></div>
+ return <section className="coupon-panel" id="coupon-builder"><div className="coupon-head"><div><span className="eyebrow">OUTIL DE CALCUL</span><h3><Calculator size={19}/> Constructeur de combiné</h3></div><span className="coupon-tag">Sans pari automatique</span></div>
  <label className="coupon-title-field">Nom du coupon<input value={title} onChange={e=>setTitle(e.target.value)} /></label>
  <div className="coupon-legs">{legs.map((leg,index)=><article className="coupon-leg" key={leg.id}><div className="coupon-leg-head"><b>Sélection {index+1}</b>{legs.length>1&&<button type="button" onClick={()=>setLegs(old=>old.filter(x=>x.id!==leg.id))} aria-label="Supprimer"><Trash2 size={14}/></button>}</div>
  <label>Compétition<select value={leg.competition} onChange={e=>update(leg.id,"competition",e.target.value)}>{competitions.map(x=><option key={x}>{x}</option>)}</select></label>
