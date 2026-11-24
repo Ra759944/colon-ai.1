@@ -40,7 +40,7 @@ export default function BankrollTracker() {
     const { data: auth } = await supabase.auth.getUser();
     if (!auth.user) { setUserId(null); setLoading(false); return; }
     setUserId(auth.user.id);
-    let { data: banks, error: bankError } = await supabase.from("bankrolls").select("id,opening_balance").eq("user_id", auth.user.id).order("created_at", { ascending: true }).limit(1);
+    const { data: banks, error: bankError } = await supabase.from("bankrolls").select("id,opening_balance").eq("user_id", auth.user.id).order("created_at", { ascending: true }).limit(1);
     if (bankError) { setError("Impossible de charger ta bankroll."); setLoading(false); return; }
     let bank = banks?.[0];
     if (!bank) {
@@ -78,7 +78,7 @@ export default function BankrollTracker() {
     {!loading && !userId ? <div className="bankroll-empty"><p>Connecte-toi pour enregistrer ton capital et suivre tes opérations.</p><a href="/auth/login">Se connecter</a></div> : loading ? <p className="bankroll-note">Chargement de ta bankroll…</p> : <>
       <div className="bankroll-balance"><span>Solde calculé</span><strong>{money(balance)}</strong><small>Capital initial : {money(opening)}</small></div>
       <form className="bankroll-form" onSubmit={submit}>
-        <label>Type d'opération<select value={kind} onChange={e => setKind(e.target.value as Transaction["kind"])}>{Object.entries(labels).map(([value,label]) => <option value={value} key={value}>{label}</option>)}</select></label>
+        <label>Type d&apos;opération<select value={kind} onChange={e => setKind(e.target.value as Transaction["kind"])}>{Object.entries(labels).map(([value,label]) => <option value={value} key={value}>{label}</option>)}</select></label>
         <label>Montant (FCFA)<input inputMode="numeric" type="number" min="1" step="1" value={amount} onChange={e => setAmount(e.target.value)} placeholder="Ex. 500" required /></label>
         <label>Match (facultatif)<input value={match} onChange={e => setMatch(e.target.value)} placeholder="Équipe A – Équipe B" /></label>
         <label>Note (facultatif)<input value={description} onChange={e => setDescription(e.target.value)} placeholder="Détail de l'opération" /></label>
