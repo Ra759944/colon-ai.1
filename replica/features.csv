@@ -1,0 +1,22 @@
+feature,area,priority,original,clone,notes
+Responsive landing page,Product,must,yes,partial,Identité et contenu COLON AI
+Email signup and login,Accounts,must,not-observed,no,Supabase Auth
+Password reset and email confirmation,Accounts,must,not-observed,no,Supabase Auth
+User profile and preferences,Accounts,must,not-observed,no,Timezone and FCFA defaults
+Live fixtures by date,Football data,must,yes,partial,API-Football official API
+Competition and team metadata,Football data,must,yes,no,Always display full competition name
+Match detail and statistics,Analysis,must,yes,no,Source timestamps and missing-data states
+Transparent match analysis,Analysis,must,yes,no,Facts separated from model estimates
+Prediction history and grading,Analysis,must,yes,no,Include losses and void outcomes
+Coupon builder by target odds,Coupons,must,yes,no,No guaranteed outcomes
+Odds comparison,Odds,should,yes,no,Requires licensed odds provider
+Arbitrage stake calculator,Arbitrage,should,yes,no,Theoretical margin plus real-world risk warnings
+Bankroll and bet history,Bankroll,must,yes,no,Manual entry first
+Ticket image OCR,Scanner,could,yes,no,User confirms extracted fields
+Premium plans and entitlements,Billing,should,yes,no,Payment provider TBD
+Admin and audit logs,Admin,should,not-observed,no,Role checks server-side
+Virtual football analysis,Virtual,could,yes,no,Separate from real football
+Multi-sport support,Data,could,yes,no,After football MVP
+Automated bookmaker bet placement,Automation,skip,yes,no,Not planned; account and legal risk
+Original AL VE CAPITAL brand and assets,IP,skip,yes,no,Must not copy protected identity or assets
+Private endpoints or proprietary models,IP,skip,not-observed,no,Use official public APIs only
