@@ -1,25 +1,27 @@
 # COLON AI
 
-Plateforme personnelle d'analyse football : statistiques, outils de pronostics prudents et suivi de bankroll.
+Plateforme d'analyse football en français, avec gestion de bankroll et outils de pronostics prudents.
 
 ## Stack
 - Next.js 15 / React 19 / TypeScript
-- Supabase (authentification et base de données, à configurer)
-- API-Football (données de matchs, à configurer)
-- Déploiement Vercel
+- Supabase Auth + PostgreSQL + RLS
+- Vercel
+- OpenFootball : calendriers et résultats en données du domaine public
+
+## Données gratuites
+Le MVP utilise [openfootball/football.json](https://github.com/openfootball/football.json), sans clé API.
+Compétitions intégrées : Premier League (Angleterre), EFL Championship (Angleterre), LaLiga (Espagne), Ligue 1 (France), Bundesliga (Allemagne), Serie A (Italie).
+Route : \`GET /api/fixtures?date=AAAA-MM-JJ&league=en.1\`.
+Codes : \`en.1\`, \`en.2\`, \`es.1\`, \`fr.1\`, \`de.1\`, \`it.1\`. Saison automatique ou \`season=2026-27\`.
+
+## Limites
+Cette source ne garantit pas les scores en direct et ne fournit pas les cotes, compositions, absences, tirs cadrés ou corners. La couverture et la fraîcheur dépendent des contributeurs.
+Les pronostics restent des estimations, sans garantie de gains.
 
 ## Démarrage
-1. Installer les dépendances : `npm install`
-2. Copier `.env.example` vers `.env.local`
-3. Renseigner les variables Supabase et API-Football.
-4. Lancer `npm run dev`.
+1. \`npm install\`
+2. Configurer \`.env.local\` avec les variables Supabase.
+3. \`npm run dev\`
 
-## Variables d'environnement
-- `NEXT_PUBLIC_SUPABASE_URL` : URL du projet Supabase.
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` : clé publique/publishable Supabase.
-- `API_FOOTBALL_KEY` : clé API-Football, conservée côté serveur.
-
-Ne jamais publier de clé secrète dans GitHub ou dans le navigateur.
-
-## État du projet
-Le tableau de bord initial est en place. La route `/api/fixtures?date=AAAA-MM-JJ` interroge API-Football côté serveur lorsque la clé est configurée. Les intégrations Supabase, l'authentification et les outils d'analyse seront ajoutés progressivement. Les pronostics restent des estimations et ne garantissent aucun gain.
+Variables : \`NEXT_PUBLIC_SUPABASE_URL\`, \`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY\` (ou ancienne \`NEXT_PUBLIC_SUPABASE_ANON_KEY\`).
+Aucune clé RapidAPI ou API-Football n'est nécessaire pour le centre de matchs actuel.
