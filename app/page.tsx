@@ -17,7 +17,7 @@ export default function Home() {
       <div className="nav-label">ESPACE DE TRAVAIL</div>
       <a className="nav-item active" href="#"><Activity size={18}/> Tableau de bord</a>
       <a className="nav-item" href="#analyses"><BrainCircuit size={18}/> Analyses IA</a>
-      <a className="nav-item" href="#outils"><Target size={18}/> Outils & coupons</a>
+      <a className="nav-item" href="#coupon-builder"><Target size={18}/> Outils & coupons</a>
       <a className="nav-item" href="#bankroll"><CircleDollarSign size={18}/> Bankroll</a>
       <div className="sidebar-bottom"><ShieldCheck size={17}/><span>Les pronostics comportent des risques. Aucun gain n’est garanti.</span></div>
     </aside>
