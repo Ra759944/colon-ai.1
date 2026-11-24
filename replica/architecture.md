@@ -13,7 +13,7 @@
 - LaLiga (Espagne) : es.1
 - Ligue 1 (France) : fr.1
 - Bundesliga (Allemagne) : de.1
-- Serie A (Italie) : it.1
+- Serie A (Italie) : it.1\n- Eredivisie (Pays-Bas) : nl.1\n- Primeira Liga (Portugal) : pt.1
 
 ## Limites de la source
 Pas de direct fiable, cotes, compositions, blessures, tirs cadrés ou corners. Les champs absents restent null ; ne pas générer de pronostic comme s'il était fondé sur des statistiques indisponibles.
