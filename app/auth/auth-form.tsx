@@ -1,8 +1,9 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 type Mode = "login" | "signup";
@@ -15,8 +16,7 @@ export default function AuthForm({ mode }: { mode: Mode }) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-  const params = useSearchParams();
-  const next = params.get("next")?.startsWith("/") ? params.get("next")! : "/";
+  const next = "/";
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
