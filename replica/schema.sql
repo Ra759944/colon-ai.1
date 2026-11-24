@@ -94,6 +94,7 @@ create table if not exists public.coupon_legs (
   created_at timestamptz not null default now()
 );
 create index if not exists coupon_legs_coupon_idx on public.coupon_legs(coupon_id);
+create index if not exists coupon_legs_match_id_idx on public.coupon_legs(match_id);
 
 alter table public.profiles enable row level security;
 alter table public.bankrolls enable row level security;
@@ -103,45 +104,45 @@ alter table public.predictions enable row level security;
 alter table public.coupons enable row level security;
 alter table public.coupon_legs enable row level security;
 
-create policy "profiles_select_own" on public.profiles for select using (auth.uid() = id);
-create policy "profiles_insert_own" on public.profiles for insert with check (auth.uid() = id);
-create policy "profiles_update_own" on public.profiles for update using (auth.uid() = id) with check (auth.uid() = id);
+create policy "profiles_select_own" on public.profiles for select using ((select auth.uid()) = id);
+create policy "profiles_insert_own" on public.profiles for insert with check ((select auth.uid()) = id);
+create policy "profiles_update_own" on public.profiles for update using ((select auth.uid()) = id) with check ((select auth.uid()) = id);
 
-create policy "bankrolls_select_own" on public.bankrolls for select using (auth.uid() = user_id);
-create policy "bankrolls_insert_own" on public.bankrolls for insert with check (auth.uid() = user_id);
-create policy "bankrolls_update_own" on public.bankrolls for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
-create policy "bankrolls_delete_own" on public.bankrolls for delete using (auth.uid() = user_id);
+create policy "bankrolls_select_own" on public.bankrolls for select using ((select auth.uid()) = user_id);
+create policy "bankrolls_insert_own" on public.bankrolls for insert with check ((select auth.uid()) = user_id);
+create policy "bankrolls_update_own" on public.bankrolls for update using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+create policy "bankrolls_delete_own" on public.bankrolls for delete using ((select auth.uid()) = user_id);
 
-create policy "bankroll_tx_select_own" on public.bankroll_transactions for select using (auth.uid() = user_id);
-create policy "bankroll_tx_insert_own" on public.bankroll_transactions for insert with check (auth.uid() = user_id);
-create policy "bankroll_tx_update_own" on public.bankroll_transactions for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
-create policy "bankroll_tx_delete_own" on public.bankroll_transactions for delete using (auth.uid() = user_id);
+create policy "bankroll_tx_select_own" on public.bankroll_transactions for select using ((select auth.uid()) = user_id);
+create policy "bankroll_tx_insert_own" on public.bankroll_transactions for insert with check ((select auth.uid()) = user_id);
+create policy "bankroll_tx_update_own" on public.bankroll_transactions for update using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+create policy "bankroll_tx_delete_own" on public.bankroll_transactions for delete using ((select auth.uid()) = user_id);
 
 -- Les matchs sont lisibles par les utilisateurs connectés. Aucune écriture client.
 create policy "matches_read_authenticated" on public.matches for select to authenticated using (true);
 
-create policy "predictions_read_own_or_public" on public.predictions for select using (user_id is null or auth.uid() = user_id);
-create policy "predictions_insert_own" on public.predictions for insert with check (auth.uid() = user_id);
-create policy "predictions_update_own" on public.predictions for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create policy "predictions_read_own_or_public" on public.predictions for select using (user_id is null or (select auth.uid()) = user_id);
+create policy "predictions_insert_own" on public.predictions for insert with check ((select auth.uid()) = user_id);
+create policy "predictions_update_own" on public.predictions for update using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
 
-create policy "coupons_select_own" on public.coupons for select using (auth.uid() = user_id);
-create policy "coupons_insert_own" on public.coupons for insert with check (auth.uid() = user_id);
-create policy "coupons_update_own" on public.coupons for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
-create policy "coupons_delete_own" on public.coupons for delete using (auth.uid() = user_id);
+create policy "coupons_select_own" on public.coupons for select using ((select auth.uid()) = user_id);
+create policy "coupons_insert_own" on public.coupons for insert with check ((select auth.uid()) = user_id);
+create policy "coupons_update_own" on public.coupons for update using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+create policy "coupons_delete_own" on public.coupons for delete using ((select auth.uid()) = user_id);
 
 create policy "coupon_legs_read_own" on public.coupon_legs for select using (
-  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = auth.uid())
+  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = (select auth.uid()))
 );
 create policy "coupon_legs_insert_own" on public.coupon_legs for insert with check (
-  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = auth.uid())
+  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = (select auth.uid()))
 );
 create policy "coupon_legs_update_own" on public.coupon_legs for update using (
-  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = auth.uid())
+  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = (select auth.uid()))
 ) with check (
-  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = auth.uid())
+  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = (select auth.uid()))
 );
 create policy "coupon_legs_delete_own" on public.coupon_legs for delete using (
-  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = auth.uid())
+  exists (select 1 from public.coupons c where c.id = coupon_id and c.user_id = (select auth.uid()))
 );
 
 -- Création du profil à l'inscription.
