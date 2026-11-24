@@ -44,9 +44,9 @@ export default function CouponBuilder() {
  <button className="coupon-add" type="button" onClick={add}><Plus size={15}/> Ajouter une sélection</button>
  <div className="coupon-summary"><div><span>Cote combinée</span><strong>{valid.length===legs.length&&valid.length>0?fmt(combined):"—"}</strong></div><div><span>Probabilité implicite</span><strong>{valid.length===legs.length&&combined>0?fmt(100/combined)+" %":"—"}</strong></div></div>
  <label className="coupon-stake">Mise envisagée (FCFA, facultatif)<input type="number" min="1" step="1" value={stake} onChange={e=>setStake(e.target.value)} placeholder="Ex. 500" /></label>
- {potential>0&&<p className="coupon-potential">Retour théorique avant éventuelles règles du bookmaker : <b>{fmt(potential)} FCFA</b>. Ce montant n'est pas un gain garanti.</p>}
+ {potential>0&&<p className="coupon-potential">Retour théorique avant éventuelles règles du bookmaker : <b>{fmt(potential)} FCFA</b>. Ce montant n&apos;est pas un gain garanti.</p>}
  <button className="coupon-save" type="button" onClick={()=>void save()} disabled={saving}><Save size={15}/>{saving?"Enregistrement…":"Enregistrer le brouillon"}</button>
  {error&&<p className="bankroll-error">{error}</p>}{notice&&<p className="bankroll-success">{notice}</p>}
- <p className="bankroll-note">La probabilité affichée est seulement l'inverse de la cote combinée. Elle ne tient pas compte de la marge du bookmaker ni de la probabilité réelle des événements. Vérifie chaque sélection et le nom complet de la compétition.</p>
+ <p className="bankroll-note">La probabilité affichée est seulement l&apos;inverse de la cote combinée. Elle ne tient pas compte de la marge du bookmaker ni de la probabilité réelle des événements. Vérifie chaque sélection et le nom complet de la compétition.</p>
  </section>;
 }
