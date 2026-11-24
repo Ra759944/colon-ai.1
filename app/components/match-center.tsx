@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CalendarDays, ChevronDown, RefreshCw } from "lucide-react";
 
 type Match = {
@@ -32,6 +32,8 @@ const leagues = [
   { id: "fr.1", name: "Ligue 1 — France" },
   { id: "de.1", name: "Bundesliga — Allemagne" },
   { id: "it.1", name: "Serie A — Italie" },
+  { id: "nl.1", name: "Eredivisie — Pays-Bas" },
+  { id: "pt.1", name: "Primeira Liga — Portugal" },
 ];
 
 function localDate() {
@@ -44,7 +46,7 @@ export default function MatchCenter() {
   const [data, setData] = useState<FixturesResponse>({});
   const [loading, setLoading] = useState(false);
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`/api/fixtures?date=${date}&league=${league}`);
@@ -55,9 +57,9 @@ export default function MatchCenter() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [date, league]);
 
-  useEffect(() => { void load(); }, [date, league]);
+  useEffect(() => { void load(); }, [load]);
 
   return (
     <section className="match-center" id="matchs">
