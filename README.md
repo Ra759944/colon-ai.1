@@ -25,3 +25,9 @@ Les pronostics restent des estimations, sans garantie de gains.
 
 Variables : \`NEXT_PUBLIC_SUPABASE_URL\`, \`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY\` (ou ancienne \`NEXT_PUBLIC_SUPABASE_ANON_KEY\`).
 Aucune clé RapidAPI ou API-Football n'est nécessaire pour le centre de matchs actuel.
+
+## Fonctionnalités ajoutées
+- Centre de matchs OpenFootball avec filtre par date et compétition.
+- Suivi personnel de bankroll lié au compte Supabase : dépôts, retraits, mises et retours, avec historique.
+- Constructeur de coupons : calcul de cote combinée, probabilité implicite et retour théorique ; sauvegarde en brouillon dans Supabase.
+- Les opérations et coupons sont protégés par les politiques RLS du compte. Aucun pari n'est placé automatiquement.
