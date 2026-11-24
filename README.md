@@ -10,7 +10,7 @@ Plateforme d'analyse football en français, avec gestion de bankroll et outils d
 
 ## Données gratuites
 Le MVP utilise [openfootball/football.json](https://github.com/openfootball/football.json), sans clé API.
-Compétitions intégrées : Premier League (Angleterre), EFL Championship (Angleterre), LaLiga (Espagne), Ligue 1 (France), Bundesliga (Allemagne), Serie A (Italie).
+Compétitions intégrées : Premier League (Angleterre), EFL Championship (Angleterre), LaLiga (Espagne), Ligue 1 (France), Bundesliga (Allemagne), Serie A (Italie), Eredivisie (Pays-Bas), Primeira Liga (Portugal).
 Route : \`GET /api/fixtures?date=AAAA-MM-JJ&league=en.1\`.
 Codes : \`en.1\`, \`en.2\`, \`es.1\`, \`fr.1\`, \`de.1\`, \`it.1\`. Saison automatique ou \`season=2026-27\`.
 
