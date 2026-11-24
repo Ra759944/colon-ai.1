@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 type SourceMatch = { date:string; time?:string; round?:string; team1:string; team2:string; score?:{ht?:number[];ft?:number[]}|number[] };
-const LEAGUES:Record<string,string>={"en.1":"Premier League (Angleterre)","en.2":"EFL Championship (Angleterre)","de.1":"Bundesliga (Allemagne)","es.1":"LaLiga (Espagne)","fr.1":"Ligue 1 (France)","it.1":"Serie A (Italie)"};
+const LEAGUES:Record<string,string>={"en.1":"Premier League (Angleterre)","en.2":"EFL Championship (Angleterre)","de.1":"Bundesliga (Allemagne)","es.1":"LaLiga (Espagne)","fr.1":"Ligue 1 (France)","it.1":"Serie A (Italie)","nl.1":"Eredivisie (Pays-Bas)","pt.1":"Primeira Liga (Portugal)"};
 function seasonFor(date:string){const [y,m]=date.split("-").map(Number);return m>=7?String(y)+"-"+String(y+1).slice(-2):String(y-1)+"-"+String(y).slice(-2);}
 export async function GET(request:NextRequest){
  const date=request.nextUrl.searchParams.get("date");const league=request.nextUrl.searchParams.get("league")??"en.1";const seasonParam=request.nextUrl.searchParams.get("season");
