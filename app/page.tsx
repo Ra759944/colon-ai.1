@@ -1,5 +1,6 @@
 import MatchCenter from "./components/match-center";
 import BankrollTracker from "./components/bankroll-tracker";
+import CouponBuilder from "./components/coupon-builder";
 import { Activity, ArrowUpRight, BarChart3, BrainCircuit, CalendarDays, CircleDollarSign, ShieldCheck, Target, Trophy } from "lucide-react";
 
 const features = [
@@ -25,6 +26,7 @@ export default function Home() {
       <section className="welcome"><div><span className="eyebrow light">BIENVENUE SUR COLON AI</span><h2>Décide avec les données.<br/><em>Pas avec l’intuition.</em></h2><p>Une plateforme d’analyse football conçue pour transformer les statistiques en informations utiles.</p><a href="#outils" className="primary-link">Découvrir les outils <ArrowUpRight size={17}/></a></div><div className="hero-art"><div className="orb orb-one"/><div className="orb orb-two"/><div className="hero-icon"><Trophy size={62}/></div><div className="hero-caption">FOOTBALL DATA<br/><b>INTELLIGENCE</b></div></div></section>
       <MatchCenter />
       <BankrollTracker />
+      <CouponBuilder />
       <div className="section-heading"><div><span className="eyebrow">VUE D’ENSEMBLE</span><h3>Votre activité</h3></div><span className="muted"><CalendarDays size={15}/> Données à connecter</span></div>
       <div className="metrics"><article className="metric"><span>Matchs analysés</span><BrainCircuit/><strong>—</strong><small>En attente de connexion API</small></article><article className="metric"><span>Pronostics suivis</span><Target/><strong>—</strong><small>Aucune donnée enregistrée</small></article><article className="metric" id="bankroll"><span>Bankroll suivie</span><CircleDollarSign/><strong>—</strong><small>Configure ton suivi personnel</small></article><article className="metric"><span>Taux de réussite</span><BarChart3/><strong>—</strong><small>Calculé sur tes résultats réels</small></article></div>
       <div className="section-heading" id="outils"><div><span className="eyebrow">BOÎTE À OUTILS</span><h3>Les outils COLON AI</h3></div><span className="muted">Développement en cours</span></div>
